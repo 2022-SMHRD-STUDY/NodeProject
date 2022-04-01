@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/head') %>
+  </head>
+  <body>
+    <div class="contact contact-edit">
+      <h2>Edit</h2>
+      <form class="contact-form" action="/contacts/<%= contact._id %>?_method=put" method="post">
+        <div>
+          <label for="name">title</label>
+          <input type="text" id="title" name="title" value="<%= contact.title %>">
+        </div>
+        <div>
+          <label for="email">content</label>
+          <input type="text" id="content" name="content" value="<%= contact.content %>">
+        </div>
+        <div>
+          <label for="phone">writer</label>
+          <input type="text" id="writer" name="writer" value="<%= contact.writer %>">
+        </div>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
