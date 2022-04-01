@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/head') %>
+  </head>
+  <body>
+    <div class="container">
+      <h2>게시판 만들기 복습!!</h2>
+      <div class="panel panel-default">
+        <div class="panel-heading">Panel Heading</div>
+        <div class="panel-body" id="wform" style="display:block" >
+         <form class="form-horizontal" action="/contacts" method="post">
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="title">제목 :</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="title" name="title">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="content">내용 :</label>
+          <div class="col-sm-10">          
+            <textarea rows="10" class="form-control" name="content"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="writer">작성자 :</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="writer" name="writer">
+          </div>
+        </div>
+        <div class="form-group">        
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success btn-sm">등록</button>
+            <button type="reset" class="btn btn-success btn-sm">취소</button>
+          </div>
+        </div>
+      </form>
+    </div>
+        <div class="panel-footer">스인개 체고!!</div>
+      </div>
+    </div>
+  </body>
+</html>

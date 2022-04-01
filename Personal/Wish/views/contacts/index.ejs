@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+<div class="container">
+  <h2>Panel Heading</h2>
+  <div class="panel panel-default">
+    <div class="panel-heading">Panel Heading</div>
+    <div class="panel-body">
+      <table class = 'table table-bordered table-hover'>
+        <tr><th>제목</th><th>내용</th><th>작성자</th></tr>
+        <% contacts.forEach(function(contact) { %>
+            <tr>
+            <td><a href="/contacts/<%= contact._id %>"><%= contact.title %></a></td>
+            <td><%=contact.content%></td>
+            <td><%=contact.writer%></td>
+            </tr>
+        <% }) %>
+    </table>
+    <button class="btn btn-sm btn-success " type="button" onclick="location.href='/contacts/new'">글쓰기</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

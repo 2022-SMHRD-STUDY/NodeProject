@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+</head>
+  <body>
+    <div class="container">
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">제목 :  <%= contact.title %></div>
+          <div class="panel-body">내용 :  <%= contact.content %></div>
+          <div class="panel-footer">작성자 :  <%= contact.writer %></div>
+          <div class="contact-menu">
+            <button class="btn btn-sm btn-success " type="button" onclick="location.href='/contacts/<%= contact._id %>/edit' ">수정</button>
+            <form style='display:inline' action="/contacts/<%= contact._id %>?_method=delete" method="post"> 
+              <button class="btn btn-sm btn-info" type="button" onclick="confirm('Do you want to delete this?')?this.parentElement.submit():null;">삭제</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
