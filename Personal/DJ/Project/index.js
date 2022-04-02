@@ -2,6 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser'); 
 var methodOverride = require('method-override');
+const bcrypt = require('bcrypt')
 var app = express();
 
 // DB setting
@@ -30,16 +31,6 @@ var user_info = mongoose.Schema({
 
 var User_info = mongoose.model('user_info', user_info);
 
-// var newUser = new User_info({id:'admin',password:'123', name:'admin'}
-
-// newUser.save(function(error, data){
-//     if(error){
-//         console.log(error);
-//     }else{
-//         console.log('Saved!')
-//     }
-// })
-
 app.get('/', function(req, res){
     res.redirect('/contacts');
   });
@@ -55,14 +46,14 @@ app.get('/contacts/newUser', function(req, res){
 
   // Contacts - New user
 app.post('/contacts/newuser', function(req, res){
+  req.body.password = bcrypt.hashSync(req.body.password, 10)
     User_info.create(req.body, function(err, user_info){
+      console.log(req.body.password)
       if(err) return res.json(err);
       res.redirect('/contacts');
     });
   });
   
-
-
   // Port setting
 var port = 3000;
 app.listen(port, function(){
