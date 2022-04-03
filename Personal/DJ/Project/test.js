@@ -9,7 +9,7 @@ bcrypt.hash(password, 10, (err, encryptedPassowrd) => {
     // async callback
 })
 
-console.log(encryptedPassowrd)
+console.log(encryptedPassowrd)// 이상한 암호화 값인데
 
 const same = bcrypt.compareSync(password, encryptedPassowrd) // sync
 console.log(same) 
