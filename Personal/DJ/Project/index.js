@@ -55,7 +55,7 @@ app.post('/contacts/newuser', function(req, res){
   });
 
 
-// 로그인 유저 검색 후 데이터 전송
+// 로그인 유저 검색 후 데이터 전송 
 app.post('/contacts/Login', function(req, res){
   // 입력받은 비밀번호를 암호화한다.
   let encryptedPassowrd = bcrypt.hashSync(req.body.password, 10)
