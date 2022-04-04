@@ -1,3 +1,4 @@
+# 암호화
 npm install bcrypt
 
 암호화할때마다 해시값이 달라진다.. 왜?
@@ -7,6 +8,6 @@ npm install bcrypt
 salt값과 판별하는 특정 문자열이 있다고한다.
 자세히는 모르겠다.
 
-salt가 뭐냐면
-소금을 뿌린다고 하더라구요.
-암호화를 하는데 단순하게
+# 세션 설치하기
+npm install -s express-session
+공식사이트 메뉴얼 : https://www.npmjs.com/package/express-session

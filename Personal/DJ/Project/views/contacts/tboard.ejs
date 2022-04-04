@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+<div class="container">
+  <h2>Panel Heading</h2>
+  <div class="panel panel-default">
+    <div class="panel-heading">Panel Heading</div>
+    <div class="panel-body">
+      <table class = 'table table-bordered table-hover'>
+        <tr><th>제목</th><th>내용</th><th></th></tr>
+        <% t_review.forEach(function(t_review) { %>
+            <tr>
+            <td><%= t_review.title %></td>
+            <td><%= t_review.comment%></location>
+            <td><button class="btn btn-sm btn-success " type="button" onclick="location.href='/contacts/new'">수정</button>
+              <form style='display:inline' action="/contacts/<%= user_info._id %>?_method=delete" method="post"> 
+                <button class="btn btn-sm btn-info" type="button" onclick="confirm('Do you want to delete this?')?this.parentElement.submit():null;">삭제</button>
+              </form>
+            </tr>
+        <% }) %>
+    </table>
+    <button class="btn btn-sm btn-success " type="button" onclick="location.href='/contacts/tboard/new'">글쓰기</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -44,7 +44,8 @@ var user_info = mongoose.Schema({
   
 // DB schema - 강사 리뷰
 var t_review = mongoose.Schema({
-    comment:{type:String, required:true, unique:true},
+    title:{type:String, required:true, unique:true},
+    comment:{type:String},
     password:{type:String}
   });
 
@@ -75,7 +76,6 @@ app.post('/contacts/newuser', function(req, res){
     });
   });
 
-
 // user_info - Login
 app.post('/contacts/Login', function(req, res){
   // 입력받은 비밀번호를 암호화한다.
@@ -91,27 +91,45 @@ app.post('/contacts/Login', function(req, res){
           console.log("비밀번호 일치")
           //세션 생성
           req.session.userId = user_info;
+          //req.session.넣고싶은이름 = 넣을거 ( 객체도 변수1개도 들어가고.)
           console.log(req.session.userId)
           req.session.save(()=>{
             res.render('contacts/main',{user_info:req.session.userId}); // db검색값 객체 전체를 넣어준다.
+            // 키:밸류
           });
         }
-        // 비밀번호가 일치하지 않을 때
-        else{
+        else{     // 비밀번호가 일치하지 않을 때
           console.log("비밀번호가 올바르지않아")
           res.redirect('/contacts');
         }
       }
-
-      // 검색결과가 없을 때
-      else{
+      else{     // 검색결과가 없을 때
         console.log("존재하지않는 아이디야")
         res.redirect('/contacts');
       }
     });
   });
 
+// 강사 리뷰 게시판
+app.get('/contacts/tboard', function(req, res){
+  T_review.find({}, function(err, t_review){
+      if(err) return res.json(err);
+      res.render('contacts/tboard', {t_review:t_review});
+    });
+  }); 
 
+// 강사 리뷰 게시판 글쓰기
+app.get('/contacts/tboard/new', function(req, res){
+  res.render('contacts/newform');
+});
+
+app.post('/contacts/tboard/new', function(req, res){
+  T_review.create(req.body, function(err, T_review){
+    if(err) return res.json(err);
+    res.redirect('/contacts/tboard');
+  });
+});
+  
   // Port setting
 var port = 3000;
 app.listen(port, function(){
