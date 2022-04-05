@@ -110,7 +110,7 @@ app.post('/contacts/Login', function(req, res){
     });
   });
 
-// 강사 리뷰 게시판
+// T_review- show
 app.get('/contacts/tboard', function(req, res){
   T_review.find({}, function(err, t_review){
       if(err) return res.json(err);
@@ -118,17 +118,28 @@ app.get('/contacts/tboard', function(req, res){
     });
   }); 
 
-// 강사 리뷰 게시판 글쓰기
+// T_review - create form
 app.get('/contacts/tboard/new', function(req, res){
   res.render('contacts/newform');
 });
 
+// T_review - create form
 app.post('/contacts/tboard/new', function(req, res){
   T_review.create(req.body, function(err, T_review){
     if(err) return res.json(err);
     res.redirect('/contacts/tboard');
   });
 });
+
+// 리뷰 삭제
+app.delete('/contacts/tboard/:id', function(req, res){
+  T_review.deleteOne({_id:req.params.id}, function(err){
+    if(err) return res.json(err);
+    res.redirect('/contacts/tboard');
+  });
+});
+
+
   
   // Port setting
 var port = 3000;
