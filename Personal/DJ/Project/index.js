@@ -112,6 +112,9 @@ app.post('/contacts/Login', function(req, res){
 
 // T_review- show
 app.get('/contacts/tboard', function(req, res){
+  if(typeof req.session.userId == "undefined" ){
+    return res.redirect('/contacts');
+  }
   T_review.find({}, function(err, t_review){
       if(err) return res.json(err);
       res.render('contacts/tboard', {t_review:t_review});
@@ -139,10 +142,14 @@ app.delete('/contacts/tboard/:id', function(req, res){
   });
 });
 
-
-  
   // Port setting
 var port = 3000;
 app.listen(port, function(){
   console.log('server on! http://localhost:'+port);
 });
+
+function sessionCheck(req,res){
+  if(typeof req.session.userId == "undefined" ){
+    res.redirect('/contacts');
+  }
+}
