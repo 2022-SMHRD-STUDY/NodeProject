@@ -138,18 +138,29 @@ app.post('/contacts/tboard/new', function(req, res){
 app.delete('/contacts/tboard/:id', function(req, res){
   T_review.deleteOne({_id:req.params.id}, function(err){
     if(err) return res.json(err);
-    res.redirect('/contacts/tboard');
+  
   });
 });
 
 // 리뷰 업데이트
 app.put('/contacts/tboard/:id', function(req, res){
-  console.log(req.body)
-  T_review.findOneAndUpdate({_id:req.params.id}, req.body, function(err, T_review){
-    if(err) return res.json(err);
+  T_review.findOne({_id:req.params.id}, function(err, T_review1){
+    var pw = T_review1.password;
+    // console.log(pw)
+    // console.log(req.body.input_password)
+    if(pw==req.body.input_password){
+      console.log(req.body)
+      T_review.findOneAndUpdate({_id:req.params.id}, req.body, function(err, T_review){
+        if(err) return res.json(err);
+        res.redirect('/contacts/tboard');
+      });
+    }
     res.redirect('/contacts/tboard');
   });
+
 });
+
+
 
   // Port setting
 var port = 3000;
