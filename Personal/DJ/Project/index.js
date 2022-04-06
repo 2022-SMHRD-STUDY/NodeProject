@@ -155,7 +155,11 @@ app.put('/contacts/tboard/:id', function(req, res){
         res.redirect('/contacts/tboard');
       });
     }
-    res.redirect('/contacts/tboard');
+    //alret 띄우고 페이지 이동하기
+    res.write("<script>alert('wrong Password')</script>");
+    res.write("<script>window.location=`/contacts/tboard`</script>");  
+    
+    // res.redirect('/contacts/tboard');
   });
 
 });
