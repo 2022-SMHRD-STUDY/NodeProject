@@ -145,21 +145,26 @@ app.delete('/contacts/tboard/:id', function(req, res){
 // 리뷰 업데이트
 app.put('/contacts/tboard/:id', function(req, res){
   T_review.findOne({_id:req.params.id}, function(err, T_review1){
+    if(err) return res.json(err);
     var pw = T_review1.password;
-    // console.log(pw)
-    // console.log(req.body.input_password)
+    console.log("리뷰의패스워드 : "+pw)
+    console.log("넘어온패스워드 : "+req.body.input_password)
     if(pw==req.body.input_password){
       console.log(req.body)
+
       T_review.findOneAndUpdate({_id:req.params.id}, req.body, function(err, T_review){
+        console.log("update의 id값  "+ req.params.id)
+        console.log("update의 body값  "+ req.body.title)
         if(err) return res.json(err);
-        res.redirect('/contacts/tboard');
+        return res.redirect('/contacts/tboard');
       });
+    }else{
+      //alret 띄우고 페이지 이동하기.
+      res.write("<script>alert('wrong Password')</script>");
+      res.write("<script>window.location='/contacts/tboard'</script>");
+      // res.redirect('/contacts/tboard');
     }
-    //alret 띄우고 페이지 이동하기
-    res.write("<script>alert('wrong Password')</script>");
-    res.write("<script>window.location=`/contacts/tboard`</script>");  
     
-    // res.redirect('/contacts/tboard');
   });
 
 });
