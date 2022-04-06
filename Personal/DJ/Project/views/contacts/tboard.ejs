@@ -23,10 +23,10 @@
               <div id="pw_check<%=t_review._id%>" style="display:none" > 
               <!-- 4/6 여기까지 작업. update 잘되는지 확인하다 말았음 -->
               <form action="/contacts/tboard/<%= t_review._id %>?_method=put" method="post">
-              <div id="u_pcheck">Password : <input style="display:inline;width:100px;height:18px;"  type="password" class="form-control" name="pw">
-                <input type="hidden" name="title" val="editTitle('<%= t_review._id%>')">
-                <input type="hidden" name="comment" val="editComemnt('<%= t_review._id%>')">
-                <button class="btn btn-sm btn-success ">확인</button>
+              <div id="u_pcheck">Password : <input style="display:inline;width:100px;height:18px;"  type="password" class="form-control" >
+                <input type="hidden" name="title" id="hid_title<%=t_review._id%>" value="aswdf">
+                <input type="hidden" name="comment" id="hid_comment<%=t_review._id%>" value="">
+                <button class="btn btn-sm btn-success" onclick="test('<%= t_review._id %>')" type="submit">확인</button>
                 
               </div>
             </form>
@@ -70,6 +70,21 @@
     return $("#ucomment"+_id).val()
   }
 
+  function test(_id){
+    
+    $("#hid_title"+_id).val() = $("#utitle"+_id).val()
+    
+
+    // var a = 
+    // $("#hid_title"+_id).val() = a
+
+    // var b = $("#ucomment"+_id).val()
+    // $("#hid_comment"+_id).val() = b
+    
+   
+    
+   
+  }
 </script>
 </body>
 </html>

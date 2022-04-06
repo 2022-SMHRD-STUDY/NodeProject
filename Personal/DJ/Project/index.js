@@ -142,6 +142,15 @@ app.delete('/contacts/tboard/:id', function(req, res){
   });
 });
 
+// 리뷰 업데이트
+app.put('/contacts/tboard/:id', function(req, res){
+  console.log(req.body)
+  T_review.findOneAndUpdate({_id:req.params.id}, req.body, function(err, T_review){
+    if(err) return res.json(err);
+    res.redirect('/contacts/tboard');
+  });
+});
+
   // Port setting
 var port = 3000;
 app.listen(port, function(){
